@@ -97,7 +97,7 @@ class Tree
         end
         current_node = current_node.left_child
       elsif current_node.data == value
-        @root = build_tree(in_order_traversal_internal(current_node) - [value])
+        @root = build_tree(in_order_traversal(current_node) - [value])
         break
       end
     end
@@ -111,7 +111,7 @@ class Tree
 
     return next_node.right_child if next_node.left_child.nil?
 
-    build_tree(in_order_traversal_internal(next_node) - [value])
+    build_tree(in_order_traversal(next_node) - [value])
   end
 
   # Consumes a value and return a Node if the value match the data in a Node
@@ -144,14 +144,8 @@ class Tree
     array_to_be_string
   end
 
-  # traverse the BBT in depth and returns the data in order in an array
-  def in_order_traversal
-    current_node = @root
-    in_order_traversal_internal(current_node)
-  end
-
-  # Aux function to in order traversal
-  def in_order_traversal_internal(current_node)
+   # traverse the BBT in depth and returns the data in order in an array
+  def in_order_traversal(current_node = @root)
     @accumulator = []
     in_order_traversal_aux(current_node)
     @accumulator
@@ -165,13 +159,7 @@ class Tree
   end
 
   # traverse the BBT in depth and returns the data in pre order in an array
-  def pre_order_traversal
-    current_node = @root
-    pre_order_traversal_internal(current_node)
-  end
-
-  # Aux function to pre order traversal
-  def pre_order_traversal_internal(current_node)
+  def pre_order_traversal(current_node = @root)
     @accumulator = []
     pre_order_traversal_aux(current_node)
     @accumulator
@@ -185,13 +173,7 @@ class Tree
   end
 
   # traverse the BBT in depth and returns the data in post order in an array
-  def post_order_traversal
-    current_node = @root
-    post_order_traversal_internal(current_node)
-  end
-
-  # Aux function to post order traversal
-  def post_order_traversal_internal(current_node)
+  def post_order_traversal(current_node = @root)
     @accumulator = []
     post_order_traversal_aux(current_node)
     @accumulator
